@@ -63,15 +63,17 @@ function createCoin(){
 }
 
 
-function checkCoinTime(){
-	
+function checkCoinTime(checkingCoin){
 
-	if (coin.spawntime +timeOut < millis()){
-		coin.color = 'red';
-		console.log(totalCoin.length)
-	} else{
-		console.log("lives")
-		console.log(coin.spawntime + timeOut < millis())
+	if (checkingCoin.spawntime +timeOut < millis()){
+		
+		console.log("A coin has died of dementia")
+		checkingCoin.remove()
+	} else if (coin.spawntime+warning < millis()){
+		console.log("cranberry sauce")
+		checkingCoin.color = 'red';
+	} else {
+		console.log("plum Jam")
 	}
 	/*
 	console.log("timeoutstarted")
