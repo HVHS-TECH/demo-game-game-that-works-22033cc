@@ -67,8 +67,11 @@ function checkCoinTime(){
 	
 
 	if (coin.spawntime +timeOut < millis()){
-		console.log("cranberry sauce "+totalCoin[i])
-		coin.remove()
+		coin.color = 'red';
+		console.log(totalCoin.length)
+	} else{
+		console.log("lives")
+		console.log(coin.spawntime + timeOut < millis())
 	}
 	/*
 	console.log("timeoutstarted")
