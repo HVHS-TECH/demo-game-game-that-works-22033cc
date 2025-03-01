@@ -40,7 +40,7 @@ function draw(){
 		checkCoinTime(totalCoin[i])
 	}
 		totalCoin.collides(player,addPoint);
-	} else if (gameState=="certain Death"){
+	} else if (gameState=="dead"){
 		endGame();
 	}
 }
