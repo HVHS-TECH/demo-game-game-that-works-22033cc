@@ -11,6 +11,7 @@ var LifeExpectancy = 5000;
 var playerSpeed = 3;
 var gameState = "start"
 var i =0;
+var lives = 3;
 function setup(){
     console.log("playter")
     cnv = new Canvas (canvasWidth,canvasHeight)
@@ -20,37 +21,36 @@ function setup(){
 } 
 
 function draw(){
-	text("score:"+score, 20, 20)
-    background('skyblue')
-    playerMovement()
-	if (totalCoin.length<10){
-	if (random(0,1000)<20){
-		createCoin()
-		console.log(random(0,1000))
+	if (gameState=="running"){ 
+		text("score:"+score, 20, 20)
+		text("lives:"+lives, 20, 30)
+    	background('skyblue')
+    	playerMovement()
+		if (totalCoin.length<10){
+			if (random(0,1000)<20){
+			createCoin()
+			console.log(random(0,1000))
+		}
+	} else{
+			console.log("limit reached")
 	}
-} else{
-	console.log("limit reached")
-}
-	
-    text("score = "+score, 50,50)
+
+    	text("score = "+score, 50,50)
 	for ( i=0; i<totalCoin.length;i++){
 		checkCoinTime(totalCoin[i])
 	}
-	score =0;
-/*0
-	for (var i = 0; i < totalCoin.length; i++){
-		// Check Coin time should return true if the coin is old and needs to be deleted
-		checkCoinTime(totalCoin[i])
-		console.log("psychedelic breakfast")
-		console.log(totalCoin.length)
+		totalCoin.collides(player,addPoint);
+	} else if (gameState=="certain Death"){
+		endGame();
 	}
-	*/
-totalCoin.collides(player,addPoint);
 }
 
 function addPoint(_coin_,_player_) {
 	_coin_.remove();
 	score = score+1;
+
+
+
 }
 
 function createCoin(){
@@ -75,23 +75,6 @@ function checkCoinTime(checkingCoin){
 	} else {
 		console.log("plum Jam")
 	}
-	/*
-	console.log("timeoutstarted")
-    // Check if the coin has been around too long (COIN_TIMEPUT millisecomnds)
-    if (coin.spawntime + TimeOut < millis()){
-		console.log(coin.spawntime +TimeOut)
-		console.log("millis"+millis())
-        coin.remove()
-		console.log("coin killed")
-		
-    } else if (coin.spawntime+TimeOut+ warning < millis()) {
-		console.log("WARNING! WARNING!")
-		coin.color = "red"
-	} else {
-		console.log("cornflakes")
-	}
-		*/
-
 }
 
 function playerMovement(){
@@ -128,4 +111,15 @@ function playerMovement(){
     }else if (kb.released('s')){
         player.vel.y = 0;
     }
+}
+function endGame(){
+	background('red')
+	player.remove();
+	coins.remove();
+	fill(0, 0, 0);
+	textSize(50);
+	text("You missed a coin! ", 10,100);
+	textSize(100);
+
+	text("Score: " + score, 10,200);
 }
