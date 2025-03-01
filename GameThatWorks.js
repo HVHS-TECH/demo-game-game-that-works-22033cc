@@ -12,10 +12,11 @@ var playerSpeed = 3;
 var gameState = "start"
 var i =0;
 var lives = 3;
+
 function setup(){
-    console.log("playter")
-    cnv = new Canvas (canvasWidth,canvasHeight)
-    player = new Sprite (playerStart, playerStart, playerSize, playerSize,'k')
+    console.log("playter");
+    cnv = new Canvas (canvasWidth,canvasHeight);
+    player = new Sprite (playerStart, playerStart, playerSize, playerSize,'k');
     player.color = 'green';
 	totalCoin = new Group();
 } 
@@ -23,7 +24,6 @@ function setup(){
 function draw(){
 	if (gameState=="running"){ 
 		text("score:"+score, 20, 20)
-		text("lives:"+lives, 20, 30)
     	background('skyblue')
     	playerMovement()
 		if (totalCoin.length<10){
@@ -113,13 +113,5 @@ function playerMovement(){
     }
 }
 function endGame(){
-	background('red')
-	player.remove();
-	coins.remove();
-	fill(0, 0, 0);
-	textSize(50);
-	text("You missed a coin! ", 10,100);
-	textSize(100);
 
-	text("Score: " + score, 10,200);
 }
